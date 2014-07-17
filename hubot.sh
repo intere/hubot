@@ -29,7 +29,7 @@ export HUBOT_IRC_SERVER=irc.freenode.net # this is the url for irc server
 export HUBOT_IRC_ROOMS="#intere-build" 
 export HUBOT_IRC_NICK="robotnik" 
 export HUBOT_IRC_UNFLOOD="true" 
-export HUBOT_JENKINS_URL=http://localhost:31080/jenkins
+export HUBOT_JENKINS_URL=http://localhost:8081/jenkins
 #export HUBOT_JENKINS_AUTH=<user>:<passwd> 
 export HUBOT_AUTH_ADMIN=intere
 
@@ -37,7 +37,7 @@ running=$(ps -aef|grep -i hubot|grep -v grep|grep irc|awk '{print $2}');
 
 if [ "${running}" == "" ] ; then 
   cd "${HUBOT_DIR}"
-  bin/hubot --adapter irc
+  bin/hubot --adapter irc &
 else
   echo "Hubot is already running: PID=${running}"
 fi
