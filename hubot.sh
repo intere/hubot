@@ -25,6 +25,13 @@ if [ ! -e "${HUBOT_DIR}/bin" ] ; then
   cd ..
 fi
 
+running=$(ps -aef|grep -i redis-server|grep -v grep|awk '{print $2}');
+if [ "${running}" == "" ] ; then
+  nohup /usr/sbin/redis-server &
+else
+  echo "Redis Server is already running: PID=${running}"
+fi
+
 export HUBOT_IRC_SERVER=irc.freenode.net # this is the url for irc server
 export HUBOT_IRC_ROOMS="#intere-build" 
 export HUBOT_IRC_NICK="robotnik" 
